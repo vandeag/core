@@ -14,7 +14,7 @@ import java.util.*;
 
 public class KombusAvlModule extends PollUrlAvlModule {
 
-	private static String avlURL="http://rozklady.kiedybus.pl/kombus/gps.log";
+	private static String avlURL="http://www.rozklady.kiedybus.pl/kombus/gps.log";
 
 	public KombusAvlModule(String agencyId) {
 		super(agencyId);
