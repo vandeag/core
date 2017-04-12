@@ -30,8 +30,6 @@ public class KombusAvlModule extends PollUrlAvlModule {
 	protected void processData(InputStream in) throws Exception {
 
 
-		try {
-
 					 Scanner s = new Scanner(in);
 					 ArrayList lines = new ArrayList();
 					 while (s.hasNextLine()) {
@@ -97,9 +95,6 @@ public class KombusAvlModule extends PollUrlAvlModule {
 					 }
 
 					 s.close();
-			 } catch (IOException ioex) {
-					 // handle exception...
-			 }
 	}
 	/**
 	 * Just for debugging
