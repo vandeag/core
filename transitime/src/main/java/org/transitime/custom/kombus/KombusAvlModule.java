@@ -9,6 +9,8 @@ import org.json.JSONObject;
 import org.transitime.avl.PollUrlAvlModule;
 import org.transitime.db.structs.AvlReport;
 import org.transitime.modules.Module;
+import java.io.*;
+import java.util.*;
 
 public class KombusAvlModule extends PollUrlAvlModule {
 
