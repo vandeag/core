@@ -14,7 +14,8 @@ import java.util.*;
 
 public class KombusAvlModule extends PollUrlAvlModule {
 
-	private static String avlURL="http://www.rozklady.kiedybus.pl/kombus/gps.log";
+//	private static String avlURL="http://www.rozklady.kiedybus.pl/kombus/gps.log";
+	private static String avlURL="http://www.rozklady.kiedybus.pl/kombus/dane.json";
 
 	public KombusAvlModule(String agencyId) {
 		super(agencyId);
@@ -29,7 +30,7 @@ public class KombusAvlModule extends PollUrlAvlModule {
 	@Override
 	protected void processData(InputStream in) throws Exception {
 
-
+/*
 					 Scanner s = new Scanner(in);
 					 ArrayList lines = new ArrayList();
 					 while (s.hasNextLine()) {
@@ -95,6 +96,33 @@ public class KombusAvlModule extends PollUrlAvlModule {
 					 }
 
 					 s.close();
+					 */
+
+					 String json=this.getJsonString(in);
+
+		 			JSONArray array = new JSONArray(json);
+
+		 			for (int i=0; i<array.length(); ++i) {
+		 				JSONObject entry = array.getJSONObject(i);
+		 				String vehicleId=entry.getString("Name");
+		 				Double latitude=entry.getDouble("Latitude");
+		 				Double longitude=entry.getDouble("Longitude");
+
+		 				//2016-09-07 17:02:48
+		 				SimpleDateFormat dateformater=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		 				Date timestamp=dateformater.parse(entry.getString("Time"));
+
+		 				float heading=Float.NaN;
+
+		 				float speed=Float.NaN;
+
+		 				AvlReport avlReport =
+		 						new AvlReport(vehicleId, timestamp.getTime(), latitude,
+		 								longitude, heading, speed, "Kombus");
+
+		 				processAvlReport(avlReport);
+		 			}
 	}
 	/**
 	 * Just for debugging
