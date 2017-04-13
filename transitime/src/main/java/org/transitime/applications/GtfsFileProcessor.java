@@ -409,7 +409,7 @@ public class GtfsFileProcessor {
 		double maxSpeedKph =
 				getDoubleCommandLineOption("maxSpeedKph", 97.0, commandLineArgs);
 		double maxTravelTimeSegmentLength =
-				getDoubleCommandLineOption("maxTravelTimeSegmentLength", 200.0,
+				getDoubleCommandLineOption("maxTravelTimeSegmentLength", 20000.0,
 						commandLineArgs);
 		int configRev =
 				getIntegerCommandLineOption("configRev", -1, commandLineArgs);
